@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% load colorize %}
 {% block content %}
         
          <!-- Modal -->
@@ -24,7 +25,7 @@
     <div class="row">
         <div class="col">
             <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addItemModal">Add</button>
-            <a href="">
+            <a href="{% url 'update-prices' %}">
                 <button class="btn btn-info">Update</button>
             </a>
         </div>
@@ -38,14 +39,14 @@
             <div class="card mt-3">
                 <div class="card-header">
                     <h5>{{item.name}}</h5>
-                    <a href=""><button class="btn btn-danger">delete?</button></a>
+                    <a href="{% url 'delete' item.pk %}"><button class="btn btn-danger">DELETE</button></a>
                 </div>
                 <div class="card-body">
                     <div class="blockquote">
                         <div>current price ($): {{item.current_price}}</div>
                         <div>old price ($): {{item.old_price}}</div>
-                        <div>difference ($): {{item.price_difference}}</div>
-                        <div>link: <a href="{{item.url}}">{{item.url}}</a></div>
+                        <div>difference ($): {{item.price_difference|colorize}}</div>
+                        <div>link: <a href="{{item.url}}">Go to Item -></a></div>
                     </div>
                 </div>
             </div>
